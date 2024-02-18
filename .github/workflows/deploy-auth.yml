@@ -41,6 +41,7 @@ jobs:
           service_account_key: ${{ secrets.GKE_SA_KEY }}
           project_id: ${{ secrets.GKE_PROJECT }}
           export_default_credentials: true
+          install_components: 'gke-gcloud-auth-plugin'
 
       - name: Build and push docker image
         env:
@@ -49,3 +50,11 @@ jobs:
           gcloud auth configure-docker asia-southeast2-docker.pkg.dev
           docker build -t asia-southeast2-docker.pkg.dev/$GOOGLE_PROJECT/ticket-artifacts/auth:latest ./auth
           docker push asia-southeast2-docker.pkg.dev/$GOOGLE_PROJECT/ticket-artifacts/auth:latest
+
+      - name: deploy to GKE
+        run: |-
+          gcloud container clusters get-credentials $GKE_CLUSTER --region $GKE_ZONE
+          kubectl create secret generic jwt-secret --from-literal=JWT_KEY=asdf
+          kubectl apply -f ./infra/k8s/auth-mongo-deply.yaml
+          kubectl apply -f ./infra/k8s/auth-depl.yaml
+      
