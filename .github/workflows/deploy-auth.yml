@@ -15,7 +15,7 @@ name: Build and Deploy to GKE
 on:
   push:
     branches: ["main"]
-    # paths: ["auth/**"]
+    paths: ["auth/**"]
 
 env:
   PROJECT_ID: ${{ secrets.GKE_PROJECT }}
