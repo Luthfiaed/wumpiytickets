@@ -16,6 +16,7 @@ const start = async () => {
     process.on("SIGTERM", () => natsWrapper.client.close());
 
     new OrderCreatedListener(natsWrapper.client).listen();
+    console.log("Test Expiration Deploy");
   } catch (err) {
     console.error(err);
   }
