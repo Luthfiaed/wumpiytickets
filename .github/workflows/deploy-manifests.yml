@@ -7,6 +7,15 @@ on:
     paths:
       - "infra/**"
 
+env:
+  PROJECT_ID: ${{ secrets.GKE_PROJECT }}
+  GAR_LOCATION: asia-southeast2
+  GKE_CLUSTER: ticket-dev-sea1c
+  GKE_ZONE: asia-southeast1-c
+  DEPLOYMENT_NAME: gke-test
+  REPOSITORY: ticket-artifacts
+  IMAGE: client
+
 jobs:
   build:
     runs-on: ubuntu-latest
