@@ -17,7 +17,7 @@ spec:
           image: us.gcr.io/utopian-bonito-411004/tickets
           env:
             - name: MONGO_URI
-              value: mongodb://tickets-mongo-srv:27017/tickets # alternatively can be defined with secrets like JWT_KEY
+              value: mongodb://tickets-mongo-srv:27017/tickets
             - name: JWT_KEY
               valueFrom:
                 secretKeyRef:
