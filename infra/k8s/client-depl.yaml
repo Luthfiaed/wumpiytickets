@@ -14,7 +14,8 @@ spec:
     spec:
       containers:
         - name: client
-          image: us.gcr.io/utopian-bonito-411004/client
+          # image: us.gcr.io/utopian-bonito-411004/client
+          image: asia-southeast2-docker.pkg.dev/utopian-bonito-411004/ticket-artifacts/client
 ---
 apiVersion: v1
 kind: Service

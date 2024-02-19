@@ -14,7 +14,8 @@ spec:
     spec:
       containers:
         - name: payments
-          image: us.gcr.io/utopian-bonito-411004/payments
+          # image: us.gcr.io/utopian-bonito-411004/payments
+          image: asia-southeast2-docker.pkg.dev/utopian-bonito-411004/ticket-artifacts/payments
           env:
             - name: MONGO_URI
               value: mongodb://payments-mongo-srv:27017/payments # TODO: move to secrets
