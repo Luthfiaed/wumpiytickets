@@ -5,11 +5,27 @@ on:
     branches:
       - main
     paths:
-      - 'infra/**'
+      - "infra/**"
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - run: kubectl apply -f infra/k8s
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - id: "auth"
+        uses: "google-github-actions/auth@v2"
+        with:
+          credentials_json: "${{ secrets.GKE_SA_KEY }}"
+
+      - name: Setup gcloud CLI
+        uses: google-github-actions/setup-gcloud@v2
+        with:
+          project_id: ${{ secrets.GKE_PROJECT }}
+          install_components: "gke-gcloud-auth-plugin"
+
+      - name: Deploy to GKE
+        run: |-
+          gcloud container clusters get-credentials $GKE_CLUSTER --region $GKE_ZONE
+          kubectl apply -f infra/k8s
