@@ -22,7 +22,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: jwt-secret
-                  key: JWT_KEY # kubectl create secret generic jwt-secret --from-literal=JWT_KEY=asdf
+                  key: JWT_KEY
 ---
 apiVersion: v1
 kind: Service
