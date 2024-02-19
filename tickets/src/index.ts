@@ -59,6 +59,8 @@ const start = async () => {
     new OrderCreatedListener(natsWrapper.client).listen();
     new OrderCancelledListener(natsWrapper.client).listen();
 
+    console.log("Test Tickets Deployment");
+
     await mongoose.connect(process.env.MONGO_URI);
   } catch (err) {
     console.error(err);
@@ -66,7 +68,6 @@ const start = async () => {
 
   app.listen(3000, () => {
     console.log("Listening on port 3000");
-    console.log("Test Tickets Deployment");
   });
 };
 
