@@ -39,6 +39,7 @@ app.all("*", () => {
 app.use(errorHandler);
 
 const start = async () => {
+  console.log("Test Tickets Deployment");
   if (!process.env.JWT_KEY) {
     throw new Error("JWT_KEY must be defined");
   }
@@ -58,8 +59,6 @@ const start = async () => {
 
     new OrderCreatedListener(natsWrapper.client).listen();
     new OrderCancelledListener(natsWrapper.client).listen();
-
-    console.log("Test Tickets Deployment");
 
     await mongoose.connect(process.env.MONGO_URI);
   } catch (err) {
